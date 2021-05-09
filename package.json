@@ -1,0 +1,27 @@
+{
+  "name": "crud-node",
+  "version": "1.0.0",
+  "description": "This contains basic CRUD i.e.; Create, Retrieve, Update & Delete operations using MySQL & Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avinashxw/crud-node.git"
+  },
+  "keywords": [],
+  "author": "Avinash Wadhawan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avinashxw/crud-node/issues"
+  },
+  "homepage": "https://github.com/avinashxw/crud-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "node": "^16.1.0",
+    "node-modules": "^1.0.1"
+  }
+}
