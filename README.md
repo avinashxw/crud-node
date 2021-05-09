@@ -1,2 +1,2 @@
 # crud-node
-By using node.js with MySQL – CRUD operations | XAMPP / PhpMyAdmin
+This contains basic CRUD i.e.; Create, Retrieve, Update & Delete operations using MySQL & Node.js
