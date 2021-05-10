@@ -57,7 +57,7 @@ app.get('/:id', (req,res) => {
     })
 })
 
-// delet record using id
+// delete record using id
 app.delete('/:id', (req,res) => {
     pool.getConnection((err,connection) => {
         if(err) throw err
@@ -71,6 +71,26 @@ app.delete('/:id', (req,res) => {
                 console.log(err)
             }
         })
+    })
+})
+
+//create a record
+app.post('', (req,res) => {
+    pool.getConnection((err,connection) => {
+        if(err) throw err
+        console.log(`Connection ID: ${connection.threadId}`)
+
+        const params = req.body
+
+        connection.query('INSERT INTO books SET ?', [params], (req,rows) => {
+            if(!err){
+                res.send(`Success! A book has been added.`)
+            }
+            else {
+                console.log(err)
+            }
+        })
+        console.log(req.body)
     })
 })
 
