@@ -19,6 +19,7 @@ const pool = mysql.createPool({
     database: 'crud-books'
 })
 
+// retrieve all records
 app.get('', (req,res) => {
     pool.getConnection((err, connection) => {
         if(err) throw err
@@ -37,6 +38,7 @@ app.get('', (req,res) => {
     })
 })
 
+// retrieves record by using id
 app.get('/:id', (req,res) => {
     pool.getConnection((err, connection) => {
         if(err) throw err
@@ -47,6 +49,23 @@ app.get('/:id', (req,res) => {
 
             if(!err){
                 res.send(rows)
+            }
+            else {
+                console.log(err)
+            }
+        })
+    })
+})
+
+// delet record using id
+app.delete('/:id', (req,res) => {
+    pool.getConnection((err,connection) => {
+        if(err) throw err
+        console.log(`Connection ID: ${connection.threadId}`)
+
+        connection.query('DELETE FROM books WHERE fld_id = ? ', [req.params.id], (req, rows) => {
+            if(!err){
+                res.send(`Success! A book has been deleted.`)
             }
             else {
                 console.log(err)
