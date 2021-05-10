@@ -19,8 +19,22 @@ const pool = mysql.createPool({
     database: 'crud-books'
 })
 
-app.post('/', (req,res) => {
-    console.log(req.body)
+app.get('', (req,res) => {
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`Connection ID: ${connection.threadId}`)
+
+        connection.query('SELECT * FROM books ', (err,rows) => {
+            connection.release() //return the connection ot the pool
+
+            if(!err){
+                res.send(rows)
+            }
+            else {
+                console.log(err)
+            }
+        })
+    })
 })
 
 app.listen(port, () => {
