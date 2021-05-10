@@ -94,6 +94,26 @@ app.post('', (req,res) => {
     })
 })
 
+//update a record
+app.put('', (req,res) => {
+    pool.getConnection((err,connection) => {
+        if(err) throw err
+        console.log(`Connection ID: ${connection.threadId}`)
+
+        const {fld_name,fld_isbn,fld_status,fld_id} = req.body
+
+        connection.query('UPDATE books SET fld_name = ?, fld_isbn = ?, fld_status = ? WHERE fld_id = ?', [fld_name,fld_isbn,fld_status,fld_id], (req,rows) => {
+            if(!err){
+                res.send(`Success! A book record has been updated.`)
+            }
+            else {
+                console.log(err)
+            }
+        })
+        console.log(req.body)
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
