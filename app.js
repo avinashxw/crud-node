@@ -37,6 +37,24 @@ app.get('', (req,res) => {
     })
 })
 
+app.get('/:id', (req,res) => {
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`Connection ID: ${connection.threadId}`)
+
+        connection.query('SELECT * FROM books WHERE fld_id = ?',  [req.params.id], (err,rows) => {
+            connection.release() //return the connection ot the pool
+
+            if(!err){
+                res.send(rows)
+            }
+            else {
+                console.log(err)
+            }
+        })
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
